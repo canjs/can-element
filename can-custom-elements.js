@@ -21,6 +21,9 @@ function CustomElement(BaseElement) {
 			// What is the root from which we render?
 			var root = this.shadowRoot || this;
 
+			// We only want to render once
+			// but connectedCallback gets called any time the element is inserted
+			// which could be N number of times.
 			if(!this._rendered) {
 				var Element = this.constructor;
 
@@ -32,12 +35,13 @@ function CustomElement(BaseElement) {
 
 				// Append the resulting document fragment to the element
 				domMutate.appendChild.call(root, frag);
+				this._rendered = true;
 			}
 
-				this._nodeList = nodeLists.register([], null, true, false);
-				this._nodeList.expression = "<" + this.localName + ">";
-				// update the nodeList with the new children so the mapping gets applied
-				nodeLists.update(this._nodeList, getChildNodes(root));
+			this._nodeList = nodeLists.register([], null, true, false);
+			this._nodeList.expression = "<" + this.localName + ">";
+			// update the nodeList with the new children so the mapping gets applied
+			nodeLists.update(this._nodeList, getChildNodes(root));
 		}
 
 		disconnectedCallback(){
