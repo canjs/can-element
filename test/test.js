@@ -1,6 +1,6 @@
 var QUnit = require("steal-qunit");
 
-var DefineMap = require("can-define/map/map");
+var define = require("can-define");
 var CanElement = require("../can-custom-elements").Element;
 var stache = require("can-stache");
 
@@ -9,23 +9,19 @@ function fixture(){
 }
 
 QUnit.test("Absolute basics", function(){
-	var MyMap = DefineMap.extend({
-		name: {
-			value: "world"
-		}
-	});
-
 	var view = stache("hello {{name}}");
 
 	class MyApp extends CanElement {
-		static get ViewModel(){
-			return MyMap;
-		}
-
 		static get view() {
 			return view;
 		}
 	}
+
+	define(MyApp.prototype, {
+		name: {
+			value: "world"
+		}
+	});
 
 	customElements.define("my-app", MyApp);
 

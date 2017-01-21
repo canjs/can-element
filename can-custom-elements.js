@@ -12,9 +12,6 @@ function CustomElement(BaseElement) {
 			if(Element.view) {
 				this.attachShadow({ mode: "open" });
 			}
-			if(Element.ViewModel) {
-				setupViewModelToElement(Element);
-			}
 		}
 
 		connectedCallback(){
@@ -27,10 +24,6 @@ function CustomElement(BaseElement) {
 			if(!this._rendered) {
 				var Element = this.constructor;
 
-				// TODO pass in initial values
-				var ViewModel = Element.ViewModel || function(){};
-				this.viewModel = new ViewModel();
-				
 				var frag = Element.view(this.viewModel);
 
 				// Append the resulting document fragment to the element
@@ -47,31 +40,6 @@ function CustomElement(BaseElement) {
 		disconnectedCallback(){
 			nodeLists.unregister(this._nodeList);
 		}
-	}
-}
-
-function setupViewModelToElement(Element) {
-	if(Element._hasSetupProps) {
-		return;
-	}
-
-	Element._hasSetupProps = true;
-
-	var proto = Element.prototype;
-	var vmProto = Element.ViewModel.prototype;
-
-	if(vmProto._define) {
-		var definitions = Object.keys(vmProto._define.definitions) || [];
-		definitions.forEach(function(prop){
-			Object.defineProperty(proto, prop, {
-				get: function(){
-					return this.viewModel[prop];
-				},
-				set: function(val){
-					this.viewModel[prop] = val;
-				}
-			});
-		});
 	}
 }
 
