@@ -34,11 +34,13 @@
   ],
   "dependencies": {
     "can-util": "^3.2.2",
-    "can-view-nodelist": "^3.0.4"
+    "can-view-nodelist": "^3.0.4",
+    "can-view-scope": "^3.1.2"
   },
   "devDependencies": {
     "can-define": "^1.0.15",
     "can-stache": "^3.0.18",
+    "can-stache-bindings": "^3.0.6",
     "documentjs": "^0.4.4",
     "done-serve": "^1.0.0-alpha.0",
     "donejs-cli": "^1.0.0-alpha.2",
