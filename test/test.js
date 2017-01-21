@@ -86,3 +86,29 @@ QUnit.test("Can pass data to child components", function(){
 	QUnit.equal(child.shadowRoot.textContent, "bar",
 							"content was rendered correctly");
 });
+
+QUnit.skip("Gets data from the passed in scope", function(){
+	var view = stache("{{foo}}");
+
+	var MyComponent = class extends CanElement {
+		static get view() {
+			return view;
+		}
+	}
+
+	define(MyComponent.prototype, {
+		foo: "string"
+	});
+
+	customElements.define("data-from-scope", MyComponent);
+
+	var frag = stache("<data-from-scope {foo}='bar'/>")({
+		bar: "bar"
+	});
+	fixture().appendChild(frag);
+
+	var el = fixture().querySelector("data-from-scope");
+
+	QUnit.equal(el.foo, "bar", "got data from the scope");
+	QUnit.equal(el.shadowRoot.textContent, "bar");
+});
