@@ -4,12 +4,7 @@ var define = require("can-define");
 var CanCustomElement = require("../can-custom-elements");
 var CanElement = CanCustomElement.Element;
 var stache = require("can-stache");
-var stacheBindings = require("can-stache-bindings");
-
-// TODO yuck! need to find a better way for this
-CanCustomElement.setupBindings = function(el, tagData){
-	return stacheBindings.behaviors.viewModel(el, tagData, function(){}, el);
-}
+require("can-stache-bindings");
 
 function fixture(){
 	return document.getElementById("qunit-fixture");
