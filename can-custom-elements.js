@@ -44,7 +44,7 @@ function CustomElement(BaseElement) {
 			var Element = this.constructor;
 			var scope = new Scope(this);
 			scopeStack.push(scope);
-			var frag = Element.view(this, null, this._nodeList);
+			var frag = Element.view(scope, null, this._nodeList);
 			scopeStack.pop();
 
 			// Append the resulting document fragment to the element
