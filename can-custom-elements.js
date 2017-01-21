@@ -1,3 +1,4 @@
+var callbacks = require("can-view-callbacks");
 var domMutate = require("can-util/dom/mutate/mutate");
 var getChildNodes = require("can-util/dom/child-nodes/child-nodes");
 var nodeLists = require("can-view-nodelist");
@@ -7,13 +8,13 @@ function CustomElement(BaseElement) {
 	function CanElement(){
 		var self = Reflect.construct(BaseElement, arguments, this.constructor);
 
-		self._scope = peek(scopeStack);
-
 		self._rendered = false;
 		var Element = self.constructor;
 		if(Element.view) {
 			self.attachShadow({ mode: "open" });
 		}
+
+		setupTagData(self);
 
 		return self;
 	}
@@ -31,11 +32,7 @@ function CustomElement(BaseElement) {
 		// but connectedCallback gets called any time the element is inserted
 		// which could be N number of times.
 		if(!this._rendered) {
-			var tagData = {
-				scope: this._scope || new Scope()
-			};
-
-			var teardownBindings = exports.setupBindings(this, tagData);
+			var teardownBindings = exports.setupBindings(this, this._tagData);
 
 			// setup our nodeList
 			this._nodeList = nodeLists.register([], teardownBindings, true, false);
@@ -43,9 +40,7 @@ function CustomElement(BaseElement) {
 
 			var Element = this.constructor;
 			var scope = new Scope(this);
-			scopeStack.push(scope);
 			var frag = Element.view(scope, null, this._nodeList);
-			scopeStack.pop();
 
 			// Append the resulting document fragment to the element
 			domMutate.appendChild.call(root, frag);
@@ -63,10 +58,17 @@ function CustomElement(BaseElement) {
 	return CanElement;
 }
 
-var scopeStack = [];
+// Register with callbacks.tag so that we can get the tagData
+// associated with this element.
+function setupTagData(el) {
+	var Element = el.constructor;
+	if(!Element._hasSetupTagData) {
+		Element._hasSetupTagData = true;
 
-function peek(arr) {
-	return arr[arr.length - 1];
+		callbacks.tag(el.localName, function(el, tagData){
+			el._tagData = tagData;
+		});
+	}
 }
 
 exports = module.exports = CustomElement;
