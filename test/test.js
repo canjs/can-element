@@ -87,7 +87,7 @@ QUnit.test("Can pass data to child components", function(){
 							"content was rendered correctly");
 });
 
-QUnit.skip("Gets data from the passed in scope", function(){
+QUnit.test("Gets data from the passed in scope", function(){
 	var view = stache("{{foo}}");
 
 	var MyComponent = class extends CanElement {
