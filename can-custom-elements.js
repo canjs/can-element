@@ -33,7 +33,7 @@ function CustomElement(BaseElement) {
 		if(!this._rendered) {
 			var Element = this.constructor;
 
-			var frag = Element.view(this.viewModel, null, this._nodeList);
+			var frag = Element.view(this, null, this._nodeList);
 
 			// Append the resulting document fragment to the element
 			domMutate.appendChild.call(root, frag);
