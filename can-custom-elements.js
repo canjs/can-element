@@ -32,7 +32,10 @@ function CustomElement(BaseElement) {
 		// but connectedCallback gets called any time the element is inserted
 		// which could be N number of times.
 		if(!this._rendered) {
-			var teardownBindings = exports.setupBindings(this, this._tagData);
+			var tagData = this._tagData || {
+				scope: new Scope()
+			};
+			var teardownBindings = exports.setupBindings(this, tagData);
 
 			// setup our nodeList
 			this._nodeList = nodeLists.register([], teardownBindings, true, false);
