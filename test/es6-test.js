@@ -128,7 +128,7 @@ QUnit.test("Gets data from the passed in scope", function(){
 	QUnit.stop();
 });
 
-QUnit.skip("DOM events work when can-defined", function(){
+QUnit.test("DOM events work when can-defined", function(){
 	var view = stache("{{foo}}");
 
 	var EventEl = class extends CanElement {
