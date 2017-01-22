@@ -1,4 +1,5 @@
 var callbacks = require("can-view-callbacks");
+var domData = require("can-util/dom/data/data");
 var domMutate = require("can-util/dom/mutate/mutate");
 var getChildNodes = require("can-util/dom/child-nodes/child-nodes");
 var nodeLists = require("can-view-nodelist");
@@ -15,6 +16,9 @@ function CustomElement(BaseElement) {
 		}
 
 		setupTagData(self);
+
+		// Mark the element as its own viewModel for binding purposes
+		domData.set.call(self, "viewModel", self);
 
 		return self;
 	}
@@ -35,10 +39,9 @@ function CustomElement(BaseElement) {
 			var tagData = this._tagData || {
 				scope: new Scope()
 			};
-			var teardownBindings = exports.setupBindings(this, tagData);
 
 			// setup our nodeList
-			this._nodeList = nodeLists.register([], teardownBindings, true, false);
+			this._nodeList = nodeLists.register([], null, true, false);
 			this._nodeList.expression = "<" + this.localName + ">";
 
 			var Element = this.constructor;
