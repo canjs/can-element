@@ -39,6 +39,7 @@
     "can-view-scope": "^3.1.2"
   },
   "devDependencies": {
+    "can-compute": "^3.0.5",
     "can-define": "^1.0.15",
     "can-stache": "^3.0.18",
     "can-stache-bindings": "^3.0.6",
