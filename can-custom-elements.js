@@ -1,4 +1,3 @@
-var callbacks = require("can-view-callbacks");
 var domData = require("can-util/dom/data/data");
 var domMutate = require("can-util/dom/mutate/mutate");
 var getChildNodes = require("can-util/dom/child-nodes/child-nodes");
@@ -14,8 +13,6 @@ function CustomElement(BaseElement) {
 		if(Element.view) {
 			self.attachShadow({ mode: "open" });
 		}
-
-		setupTagData(self);
 
 		// Mark the element as its own viewModel for binding purposes
 		domData.set.call(self, "viewModel", self);
@@ -35,10 +32,6 @@ function CustomElement(BaseElement) {
 		// We only want to render once but connectedCallback gets called
 		// any time the element is inserted which could be N number of times.
 		if(!this._rendered) {
-			var tagData = this._tagData || {
-				scope: new Scope()
-			};
-
 			// setup our nodeList
 			this._nodeList = nodeLists.register([], null, true, false);
 			this._nodeList.expression = "<" + this.localName + ">";
@@ -71,19 +64,6 @@ function CustomElement(BaseElement) {
 	};
 
 	return CanElement;
-}
-
-// Register with callbacks.tag so that we can get the tagData
-// associated with this element.
-function setupTagData(el) {
-	var Element = el.constructor;
-	if(!Element._hasSetupTagData) {
-		Element._hasSetupTagData = true;
-
-		callbacks.tag(el.localName, function(el, tagData){
-			el._tagData = tagData;
-		});
-	}
 }
 
 exports = module.exports = CustomElement;

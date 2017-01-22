@@ -51,7 +51,7 @@ QUnit.test("Can pass data to child components", function(){
 		static get view() {
 			return childView;
 		}
-	}
+	};
 
 	define(Child.prototype, {
 		foo: {
@@ -64,7 +64,7 @@ QUnit.test("Can pass data to child components", function(){
 		static get view() {
 			return parentView;
 		}
-	}
+	};
 
 	define(Parent.prototype, {
 		bar: { value: "bar" }
@@ -89,7 +89,7 @@ QUnit.test("Gets data from the passed in scope", function(){
 		static get view() {
 			return view;
 		}
-	}
+	};
 
 	define(MyComponent.prototype, {
 		foo: "string"
