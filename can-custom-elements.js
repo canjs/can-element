@@ -1,3 +1,4 @@
+var assign = require("can-util/js/assign/assign");
 var domData = require("can-util/dom/data/data");
 var domMutate = require("can-util/dom/mutate/mutate");
 var getChildNodes = require("can-util/dom/child-nodes/child-nodes");
@@ -15,6 +16,10 @@ function CustomElement(BaseElement) {
 		}
 
 		// Mark the element as its own viewModel for binding purposes
+		var existingViewModel = domData.get.call(self, "viewModel");
+		if(existingViewModel) {
+			assign(self, existingViewModel.get());
+		}
 		domData.set.call(self, "viewModel", self);
 
 		return self;

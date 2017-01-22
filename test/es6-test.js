@@ -7,6 +7,8 @@ var domDispatch = require("can-util/dom/dispatch/dispatch");
 var stache = require("can-stache");
 require("can-stache-bindings");
 
+var helpers = require("./helpers");
+
 function fixture(){
 	return document.getElementById("qunit-fixture");
 }
@@ -37,11 +39,18 @@ QUnit.test("Absolute basics", function(){
 	var el = document.createElement("my-app");
 	fixture().appendChild(el);
 
-	var myApp = fixture().querySelector("my-app");
+	helpers.soon(function(){
+		var myApp = fixture().querySelector("my-app");
 
-	QUnit.equal(myApp.name, "world");
-	QUnit.ok(myApp instanceof HTMLElement);
-	QUnit.equal(myApp.shadowRoot.textContent, "hello world");
+		QUnit.equal(myApp.name, "world");
+		QUnit.ok(myApp instanceof HTMLElement);
+
+		QUnit.equal(myApp.shadowRoot.textContent, "hello world");
+
+		QUnit.start();
+	});
+
+	QUnit.stop();
 });
 
 QUnit.test("Can pass data to child components", function(){
@@ -77,10 +86,15 @@ QUnit.test("Can pass data to child components", function(){
 	var parent = document.createElement("parent-one");
 	fixture().appendChild(parent);
 
-	var child = parent.shadowRoot.querySelector("child-one");
-	QUnit.equal(child.foo, "bar", "data was passed from parent to child");
-	QUnit.equal(child.shadowRoot.textContent, "bar",
-							"content was rendered correctly");
+	helpers.soon(function(){
+		var child = parent.shadowRoot.querySelector("child-one");
+		QUnit.equal(child.foo, "bar", "data was passed from parent to child");
+		QUnit.equal(child.shadowRoot.textContent, "bar",
+								"content was rendered correctly");
+		QUnit.start();
+	});
+
+	QUnit.stop();
 });
 
 QUnit.test("Gets data from the passed in scope", function(){
@@ -103,10 +117,15 @@ QUnit.test("Gets data from the passed in scope", function(){
 	});
 	fixture().appendChild(frag);
 
-	var el = fixture().querySelector("data-from-scope");
+	helpers.soon(function(){
+		var el = fixture().querySelector("data-from-scope");
 
-	QUnit.equal(el.foo, "bar", "got data from the scope");
-	QUnit.equal(el.shadowRoot.textContent, "bar");
+		QUnit.equal(el.foo, "bar", "got data from the scope");
+		QUnit.equal(el.shadowRoot.textContent, "bar");
+		QUnit.start();
+	});
+
+	QUnit.stop();
 });
 
 QUnit.skip("DOM events work when can-defined", function(){
