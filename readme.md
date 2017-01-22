@@ -23,6 +23,7 @@ class HelloWorld extends Element {
 
 define(HelloWorld.prototype, {
 	name: {
+		attribute: true,
 		type: "string",
 		value: "world"
 	}
