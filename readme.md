@@ -5,52 +5,95 @@
 
 ## Usage
 
-### ES6 use
-
-With StealJS, you can import this module directly in a template that is autorendered:
+Import/require **can-custom-elements** and use the Element to derive your own classes. Calling `customElements.define` will register your element with the window's registry of custom elements.
 
 ```js
-import plugin from 'can-custom-elements';
+var Element = require("can-custom-elements").Element;
+require("can-custom-elements/attributes");
+var define = require("can-define");
+var stache = require("can-stache");
+
+var view = stache("Hello {{name}}");
+
+class HelloWorld extends Element {
+	static get view() {
+		return view;
+	}
+}
+
+define(HelloWorld.prototype, {
+	name: {
+		type: "string",
+		value: "world"
+	}
+});
+
+customElements.define("hello-world", HelloWorld);
 ```
 
-### CommonJS use
+- <code>[__can-custom-elements__ function](#can-custom-elements-function)</code>
+  - <code>[CustomElement(Element)](#customelementelement)</code>
+    - _can-custom-elements.properties_
+    - _can-custom-elements.modules_
+      - _can-custom-elements.attributes_
+    - _can-custom-elements.types_
+      - <code>[CanElement function](#canelement-function)</code>
+        - <code>[CanElement.view Object](#canelementview-object)</code>
 
-Use `require` to load `can-custom-elements` and everything else
-needed to create a template that uses `can-custom-elements`:
+## API
+
+
+## <code>__can-custom-elements__ function</code>
+Allows you to create [custom element](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Custom_Elements) classes with CanJS. 
+Safari only supports custom elements that derive from HTMLElement, so you'll usually want to use undefined.
+
+
+
+### <code>CustomElement(Element)</code>
+
+
+Create a base Element class based on `Element`, any element that derives from [HTMLElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement).
+
+**Important**: Safari only supports custom elements that derive from [HTMLElement].
 
 ```js
-var plugin = require("can-custom-elements");
+var CustomElement = require("can-custom-element");
+
+var SuperButton = class extends CustomElement(HTMLButtonElement) {
+
+};
+
+customElements.define("super-button", SuperButton);
 ```
 
-## AMD use
 
-Configure the `can` and `jquery` paths and the `can-custom-elements` package:
+1. __Element__ <code>{HTMLElement}</code>:
+  The base element from which to derive.
 
-```html
-<script src="require.js"></script>
-<script>
-	require.config({
-	    paths: {
-	        "jquery": "node_modules/jquery/dist/jquery",
-	        "can": "node_modules/canjs/dist/amd/can"
-	    },
-	    packages: [{
-		    	name: 'can-custom-elements',
-		    	location: 'node_modules/can-custom-elements/dist/amd',
-		    	main: 'lib/can-custom-elements'
-	    }]
-	});
-	require(["main-amd"], function(){});
-</script>
-```
+- __returns__ <code>{[CanElement](#canelement-function)()}</code>:
+  A derived element with CanJS behaviors added.
+  
+#### CanElement `{function}`
 
-### Standalone use
 
-Load the `global` version of the plugin:
+An interface for derived elements using either [can-custom-elements](#customelementelement) or undefined.
 
-```html
-<script src='./node_modules/can-custom-elements/dist/global/can-custom-elements.js'></script>
-```
+
+
+##### <code>function()</code>
+
+
+- __returns__ <code>{undefined}</code>:
+  
+##### CanElement.view `{Object}`
+
+
+A static getter that returns the renderer function used to render the element's shadow DOM.
+
+
+
+###### <code>Object</code>
+
 
 ## Contributing
 
