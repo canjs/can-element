@@ -1,8 +1,9 @@
 var QUnit = require("steal-qunit");
 
-var define = require("can-define");
 var CanCustomElement = require("can-custom-elements");
 var CanElement = CanCustomElement.Element;
+var define = require("can-define");
+var domDispatch = require("can-util/dom/dispatch/dispatch");
 var stache = require("can-stache");
 require("can-stache-bindings");
 
@@ -106,4 +107,31 @@ QUnit.test("Gets data from the passed in scope", function(){
 
 	QUnit.equal(el.foo, "bar", "got data from the scope");
 	QUnit.equal(el.shadowRoot.textContent, "bar");
+});
+
+QUnit.skip("DOM events work when can-defined", function(){
+	var view = stache("{{foo}}");
+
+	var EventEl = class extends CanElement {
+		static get view() { return view; }
+	};
+
+	define(EventEl.prototype, {
+		foo: "string"
+	});
+	
+	customElements.define("el-with-events", EventEl);
+
+	var events = 0, inc = function() { events++; };
+
+	var el = new EventEl();
+
+	el.addEventListener("foo", inc);
+	el.addEventListener("some-event", inc);
+
+	el.foo = "bar";
+	QUnit.equal(events, 1, "one event");
+
+	domDispatch.call(el, "some-event");
+	QUnit.equal(events, 2, "two events");
 });
