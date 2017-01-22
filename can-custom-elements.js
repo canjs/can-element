@@ -32,9 +32,8 @@ function CustomElement(BaseElement) {
 		// What is the root from which we render?
 		var root = this.shadowRoot || this;
 
-		// We only want to render once
-		// but connectedCallback gets called any time the element is inserted
-		// which could be N number of times.
+		// We only want to render once but connectedCallback gets called
+		// any time the element is inserted which could be N number of times.
 		if(!this._rendered) {
 			var tagData = this._tagData || {
 				scope: new Scope()
@@ -59,6 +58,16 @@ function CustomElement(BaseElement) {
 
 	proto.disconnectedCallback = function(){
 		nodeLists.unregister(this._nodeList);
+	};
+
+	Object.defineProperty(CanElement, "observedAttributes", {
+		get: function(){
+			return this._observedAttributes || [];
+		}
+	});
+
+	proto.attributeChangedCallback = function(attr, oldVal, newVal){
+		this[attr] = newVal;
 	};
 
 	return CanElement;
