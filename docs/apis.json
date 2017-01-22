@@ -1,0 +1,15 @@
+[
+  {"can-custom-elements": [
+    {"can-custom-elements.properties": [
+      "can-custom-elements.element"
+    ]},
+    {"can-custom-elements.modules": [
+      "can-custom-elements.attributes"
+    ]},
+    {"can-custom-elements.types": [
+      {"can-custom-elements.CanElement": [
+        "can-custom-elements.CanElement.view"
+      ]}
+    ]}
+  ]}
+]
