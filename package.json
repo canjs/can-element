@@ -1,17 +1,21 @@
 {
   "name": "can-custom-elements",
   "version": "0.0.3",
-  "description": "",
-  "homepage": "",
+  "description": "Create custom elements with CanJS",
+  "homepage": "https://github.com/canjs/can-custom-elements",
+  "bugs": {
+    "url": "https://github.com/canjs/can-custom-elements/issues"
+  },
   "repository": {
     "type": "git",
-    "url": "git://github.com//can-custom-elements.git"
+    "url": "git://github.com/canjs/can-custom-elements.git"
   },
   "author": {
-    "name": "",
-    "email": "",
-    "url": ""
+    "name": "Bitovi",
+    "email": "contact@bitovi.com",
+    "url": "http://bitovi.com"
   },
+	"license": "MIT",
   "scripts": {
     "preversion": "npm test && npm run build",
     "version": "git commit -am \"Update dist for release\" && git checkout -b release && git add -f dist/",

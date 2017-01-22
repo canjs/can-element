@@ -1,8 +1,7 @@
 # can-custom-elements
 
-[![Build Status](https://travis-ci.org//can-custom-elements.png?branch=master)](https://travis-ci.org//can-custom-elements)
-
-
+[![Build Status](https://travis-ci.org/canjs/can-custom-elements.png?branch=master)](https://travis-ci.org/canjs/can-custom-elements)
+[![npm version](https://badge.fury.io/js/can-custom-elements.svg)](http://badge.fury.io/js/can-custom-elements)
 
 ## Usage
 
