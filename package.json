@@ -37,7 +37,6 @@
     "canjs"
   ],
   "dependencies": {
-    "can-event": "^3.0.2",
     "can-util": "^3.2.2",
     "can-view-nodelist": "^3.0.4",
     "can-view-scope": "^3.1.2"
