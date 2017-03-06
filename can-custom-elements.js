@@ -1,9 +1,7 @@
 var assign = require("can-util/js/assign/assign");
-var canEvent = require("can-event");
 var domData = require("can-util/dom/data/data");
 var domMutate = require("can-util/dom/mutate/mutate");
 var getChildNodes = require("can-util/dom/child-nodes/child-nodes");
-var GLOBAL = require("can-util/js/global/global");
 var nodeLists = require("can-view-nodelist");
 var Scope = require("can-view-scope");
 
@@ -75,21 +73,4 @@ function CustomElement(BaseElement) {
 
 exports = module.exports = CustomElement;
 
-exports.Element = CustomElement(GLOBAL().HTMLElement);
-
-
-// Wrap canEvent.addEventListener so that we can support both can-defined
-// property events and generic DOM events.
-var addEventListener = canEvent.addEventListener;
-canEvent.addEventListener = function(eventName){
-	var g = GLOBAL();
-	// If this is a custom element without the eventName being a defined property
-	// fallback to DOM events.
-	if((this instanceof g.HTMLElement) && g.customElements.get(this.localName)) {
-		if(this._define && !this._define.definitions[eventName]) {
-			// This is just a regular DOM event.
-			return g.HTMLElement.prototype.addEventListener.apply(this, arguments);
-		}
-	}
-	return addEventListener.apply(this, arguments);
-};
+exports.Element = CustomElement(HTMLElement);
