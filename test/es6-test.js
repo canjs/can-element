@@ -79,7 +79,7 @@ QUnit.test("Can pass data to child components", function(){
 	define(Parent.prototype, {
 		bar: { value: "bar" }
 	});
-	
+
 	customElements.define("parent-one", Parent);
 	customElements.define("child-one", Child);
 
@@ -128,7 +128,7 @@ QUnit.test("Gets data from the passed in scope", function(){
 	QUnit.stop();
 });
 
-QUnit.test("DOM events work when can-defined", function(){
+QUnit.skip("DOM events work when can-defined", function(){
 	var view = stache("{{foo}}");
 
 	var EventEl = class extends CanElement {
@@ -138,7 +138,7 @@ QUnit.test("DOM events work when can-defined", function(){
 	define(EventEl.prototype, {
 		foo: "string"
 	});
-	
+
 	customElements.define("el-with-events", EventEl);
 
 	var events = 0, inc = function() { events++; };
