@@ -1,6 +1,6 @@
 var QUnit = require("steal-qunit");
 var CanElement = require("can-custom-elements").Element;
-require("can-custom-elements/attributes");
+var defineAttr = require("can-custom-elements/attributes");
 var compute = require("can-compute");
 var define = require("can-define");
 var stache = require("can-stache");
@@ -32,6 +32,8 @@ QUnit.test("can tag a property as an attribute", function(){
 			type: "string"
 		}
 	});
+
+	defineAttr(AttrEl);
 
 	customElements.define("attr-el", AttrEl);
 
@@ -67,6 +69,8 @@ QUnit.test("Can use 'type' to modify the type on the property", function(){
 		}
 	});
 
+	defineAttr(AttrEl);
+
 	customElements.define("attr-el-2", AttrEl);
 
 	var el = new AttrEl();
@@ -92,6 +96,8 @@ QUnit.test("Properties are observable", function(){
 	define(AttrEl.prototype, {
 		foo: "string"
 	});
+
+	defineAttr(AttrEl);
 
 	customElements.define("attr-el-3", AttrEl);
 

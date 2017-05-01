@@ -9,7 +9,7 @@ Import/require **can-custom-elements** and use the Element to derive your own cl
 
 ```js
 var Element = require("can-custom-elements").Element;
-require("can-custom-elements/attributes");
+var defineAttr = require("can-custom-elements/attributes");
 var define = require("can-define");
 var stache = require("can-stache");
 
@@ -29,6 +29,9 @@ define(HelloWorld.prototype, {
 	}
 });
 
+// Enable the attribute mixin
+defineAttr(HelloWorld);
+
 customElements.define("hello-world", HelloWorld);
 ```
 
@@ -45,7 +48,7 @@ customElements.define("hello-world", HelloWorld);
 
 
 ## <code>__can-custom-elements__ function</code>
-Allows you to create [custom element](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Custom_Elements) classes with CanJS. 
+Allows you to create [custom element](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Custom_Elements) classes with CanJS.
 Safari only supports custom elements that derive from HTMLElement, so you'll usually want to use undefined.
 
 
@@ -73,7 +76,7 @@ customElements.define("super-button", SuperButton);
 
 - __returns__ <code>{[CanElement](#canelement-function)()}</code>:
   A derived element with CanJS behaviors added.
-  
+
 #### CanElement `{function}`
 
 
@@ -85,7 +88,7 @@ An interface for derived elements using either [can-custom-elements](#customelem
 
 
 - __returns__ <code>{undefined}</code>:
-  
+
 ##### CanElement.view `{Object}`
 
 
