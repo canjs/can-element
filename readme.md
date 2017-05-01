@@ -1,15 +1,15 @@
-# can-custom-elements
+# can-element
 
-[![Build Status](https://travis-ci.org/canjs/can-custom-elements.png?branch=master)](https://travis-ci.org/canjs/can-custom-elements)
-[![npm version](https://badge.fury.io/js/can-custom-elements.svg)](http://badge.fury.io/js/can-custom-elements)
+[![Build Status](https://travis-ci.org/canjs/can-element.png?branch=master)](https://travis-ci.org/canjs/can-element)
+[![npm version](https://badge.fury.io/js/can-element.svg)](http://badge.fury.io/js/can-element)
 
 ## Usage
 
-Import/require **can-custom-elements** and use the Element to derive your own classes. Calling `customElements.define` will register your element with the window's registry of custom elements.
+Import/require **can-element** and use the Element to derive your own classes. Calling `customElements.define` will register your element with the window's registry of custom elements.
 
 ```js
-var Element = require("can-custom-elements").Element;
-var defineAttr = require("can-custom-elements/attributes");
+var Element = require("can-element").Element;
+var defineAttr = require("can-element/attributes");
 var define = require("can-define");
 var stache = require("can-stache");
 
@@ -35,20 +35,20 @@ defineAttr(HelloWorld);
 customElements.define("hello-world", HelloWorld);
 ```
 
-- <code>[__can-custom-elements__ function](#can-custom-elements-function)</code>
+- <code>[__can-element__ function](#can-element-function)</code>
   - <code>[CustomElement(Element)](#customelementelement)</code>
-    - _can-custom-elements.properties_
-    - _can-custom-elements.modules_
-      - _can-custom-elements.attributes_
-    - _can-custom-elements.types_
+    - _can-element.properties_
+    - _can-element.modules_
+      - _can-element.attributes_
+    - _can-element.types_
       - <code>[CanElement function](#canelement-function)</code>
         - <code>[CanElement.view Object](#canelementview-object)</code>
 
 ## API
 
 
-## <code>__can-custom-elements__ function</code>
-Allows you to create [custom element](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Custom_Elements) classes with CanJS.
+## <code>__can-element__ function</code>
+Allows you to create [customelement](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Custom_Elements) classes with CanJS. 
 Safari only supports custom elements that derive from HTMLElement, so you'll usually want to use undefined.
 
 
@@ -61,7 +61,7 @@ Create a base Element class based on `Element`, any element that derives from [H
 **Important**: Safari only supports custom elements that derive from [HTMLElement].
 
 ```js
-var CustomElement = require("can-custom-element");
+var CustomElement = require("can-element");
 
 var SuperButton = class extends CustomElement(HTMLButtonElement) {
 
@@ -76,11 +76,11 @@ customElements.define("super-button", SuperButton);
 
 - __returns__ <code>{[CanElement](#canelement-function)()}</code>:
   A derived element with CanJS behaviors added.
-
+  
 #### CanElement `{function}`
 
 
-An interface for derived elements using either [can-custom-elements](#customelementelement) or undefined.
+An interface for derived elements using either [can-element](#customelementelement) or undefined.
 
 
 
@@ -88,7 +88,7 @@ An interface for derived elements using either [can-custom-elements](#customelem
 
 
 - __returns__ <code>{undefined}</code>:
-
+  
 ##### CanElement.view `{Object}`
 
 

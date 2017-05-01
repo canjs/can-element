@@ -1,14 +1,14 @@
 [
-  {"can-custom-elements": [
-    {"can-custom-elements.properties": [
-      "can-custom-elements.element"
+  {"can-element": [
+    {"can-element.properties": [
+      "can-element.element"
     ]},
-    {"can-custom-elements.modules": [
-      "can-custom-elements.attributes"
+    {"can-element.modules": [
+      "can-element.attributes"
     ]},
-    {"can-custom-elements.types": [
-      {"can-custom-elements.CanElement": [
-        "can-custom-elements.CanElement.view"
+    {"can-element.types": [
+      {"can-element.CanElement": [
+        "can-element.CanElement.view"
       ]}
     ]}
   ]}

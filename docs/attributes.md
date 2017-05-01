@@ -1,5 +1,5 @@
-@module {{}} can-custom-elements/attributes
-@parent can-custom-elements.modules
+@module {{}} can-element/attributes
+@parent can-element.modules
 
 Sets up attribute bindings when using [can-define].
 
@@ -15,9 +15,9 @@ Since the [can-define.types.type] can still be specified, you can have propertie
 
 ```js
 var define = require("can-define");
-var Element = require("can-custom-elements").Element;
+var Element = require("can-element").Element;
 var view = require("./calc.stache");
-require("can-custom-elements/attributes");
+var defineAttr = require("can-element/attributes");
 
 var Calculator = class extends Element {
 	static get view() {
@@ -31,6 +31,8 @@ define(Calculator.prototype, {
 		attribute: true
 	}
 });
+
+defineAttr(Calculator);
 
 customElements.define("my-calculator", Calculator);
 

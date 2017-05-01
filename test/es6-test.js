@@ -1,7 +1,7 @@
 var QUnit = require("steal-qunit");
 
-var CanCustomElement = require("can-custom-elements");
-var CanElement = CanCustomElement.Element;
+var withElement = require("can-element");
+var CanElement = withElement.Element;
 var define = require("can-define");
 var domDispatch = require("can-util/dom/dispatch/dispatch");
 var stache = require("can-stache");

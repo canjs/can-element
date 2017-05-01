@@ -1,12 +1,12 @@
-@module {function} can-custom-elements
+@module {function} can-element
 @parent can-ecosystem
-@group can-custom-elements.properties 1 properties
-@group can-custom-elements.modules 2 modules
-@group can-custom-elements.types 3 types
+@group can-element.properties 1 properties
+@group can-element.modules 2 modules
+@group can-element.types 3 types
 
-@description Allows you to create [custom element](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Custom_Elements) classes with CanJS.
+@description Allows you to create [customelement](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Custom_Elements) classes with CanJS.
 
-Safari only supports custom elements that derive from HTMLElement, so you'll usually want to use [can-custom-elements.element].
+Safari only supports custom elements that derive from HTMLElement, so you'll usually want to use [can-element.element].
 
 @signature `CustomElement(Element)`
 
@@ -15,7 +15,7 @@ Create a base Element class based on `Element`, any element that derives from [H
 **Important**: Safari only supports custom elements that derive from [HTMLElement].
 
 ```js
-var CustomElement = require("can-custom-element");
+var CustomElement = require("can-element");
 
 var SuperButton = class extends CustomElement(HTMLButtonElement) {
 
@@ -25,18 +25,18 @@ customElements.define("super-button", SuperButton);
 ```
 
 @param {HTMLElement} Element The base element from which to derive.
-@return {can-custom-elements.CanElement} A derived element with CanJS behaviors added.
+@return {can-element.CanElement} A derived element with CanJS behaviors added.
 
 @body
 
 ## Use
 
-`can-custom-elements` makes it possible to create standard custom elements (part of [web components](https://developer.mozilla.org/en-US/docs/Web/Web_Components)).
+`can-element` makes it possible to create standard custom elements (part of [web components](https://developer.mozilla.org/en-US/docs/Web/Web_Components)).
 
-Use can-custom-elements to create a class that can be passed into [customElements.define](https://developer.mozilla.org/en-US/docs/Web/API/CustomElementRegistry/define) to register the element in the window.
+Use can-element to create a class that can be passed into [customElements.define](https://developer.mozilla.org/en-US/docs/Web/API/CustomElementRegistry/define) to register the element in the window.
 
 ```js
-var Element = require("can-custom-elements").Element;
+var Element = require("can-element").Element;
 var stache = require("can-stache");
 var define = require("can-define");
 

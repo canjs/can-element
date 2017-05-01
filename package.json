@@ -1,14 +1,15 @@
 {
-  "name": "can-custom-elements",
+  "name": "can-element",
   "version": "0.1.2",
+  "main": "can-element.js",
   "description": "Create custom elements with CanJS",
-  "homepage": "https://github.com/canjs/can-custom-elements",
+  "homepage": "https://github.com/canjs/can-element",
   "bugs": {
-    "url": "https://github.com/canjs/can-custom-elements/issues"
+    "url": "https://github.com/canjs/can-element/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/canjs/can-custom-elements.git"
+    "url": "git://github.com/canjs/can-element.git"
   },
   "author": {
     "name": "Bitovi",
@@ -30,7 +31,6 @@
     "document": "bit-docs",
     "develop": "done-serve --static --develop --port 8080"
   },
-  "main": "can-custom-elements.js",
   "keywords": [
     "web component",
     "custom elements",
@@ -75,6 +75,6 @@
     "readme": {
       "apis": "./docs/apis.json"
     },
-    "parent": "can-custom-elements"
+    "parent": "can-element"
   }
 }
