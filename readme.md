@@ -1,120 +1,28 @@
 # can-element
 
-[![Build Status](https://travis-ci.org/canjs/can-element.png?branch=master)](https://travis-ci.org/canjs/can-element)
-[![npm version](https://badge.fury.io/js/can-element.svg)](http://badge.fury.io/js/can-element)
-
-## Usage
+[![Join the chat at https://gitter.im/canjs/canjs](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/canjs/canjs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/canjs/can-element/blob/master/LICENSE.md)
+[![npm version](https://badge.fury.io/js/can-element.svg)](https://www.npmjs.com/package/can-element)
+[![Travis build status](https://travis-ci.org/canjs/can-element.svg?branch=master)](https://travis-ci.org/canjs/can-element)
+[![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/canjs/can-element?branch=master&svg=true)](https://ci.appveyor.com/project/matthewp/can-element)
+[![Coverage status](https://coveralls.io/repos/github/canjs/can-element/badge.svg?branch=master)](https://coveralls.io/github/canjs/can-element?branch=master)
+[![Greenkeeper badge](https://badges.greenkeeper.io/canjs/can-element.svg)](https://greenkeeper.io/)
 
 Import/require **can-element** and use the Element to derive your own classes. Calling `customElements.define` will register your element with the window's registry of custom elements.
 
-```js
-var Element = require("can-element").Element;
-var defineAttr = require("can-element/attributes");
-var define = require("can-define");
-var stache = require("can-stache");
+## Documentation
 
-var view = stache("Hello {{name}}");
+Read the [can-element API docs on CanJS.com](https://canjs.com/doc/can-element.html).
 
-class HelloWorld extends Element {
-	static get view() {
-		return view;
-	}
-}
+## Changelog
 
-define(HelloWorld.prototype, {
-	name: {
-		attribute: true,
-		type: "string",
-		value: "world"
-	}
-});
-
-// Enable the attribute mixin
-defineAttr(HelloWorld);
-
-customElements.define("hello-world", HelloWorld);
-```
-
-- <code>[__can-element__ function](#can-element-function)</code>
-  - <code>[CustomElement(Element)](#customelementelement)</code>
-    - _can-element.properties_
-    - _can-element.modules_
-      - _can-element.attributes_
-    - _can-element.types_
-      - <code>[CanElement function](#canelement-function)</code>
-        - <code>[CanElement.view Object](#canelementview-object)</code>
-
-## API
-
-
-## <code>__can-element__ function</code>
-Allows you to create [customelement](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Custom_Elements) classes with CanJS. 
-Safari only supports custom elements that derive from HTMLElement, so you'll usually want to use undefined.
-
-
-
-### <code>CustomElement(Element)</code>
-
-
-Create a base Element class based on `Element`, any element that derives from [HTMLElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement).
-
-**Important**: Safari only supports custom elements that derive from [HTMLElement].
-
-```js
-var CustomElement = require("can-element");
-
-var SuperButton = class extends CustomElement(HTMLButtonElement) {
-
-};
-
-customElements.define("super-button", SuperButton);
-```
-
-
-1. __Element__ <code>{HTMLElement}</code>:
-  The base element from which to derive.
-
-- __returns__ <code>{[CanElement](#canelement-function)()}</code>:
-  A derived element with CanJS behaviors added.
-  
-#### CanElement `{function}`
-
-
-An interface for derived elements using either [can-element](#customelementelement) or undefined.
-
-
-
-##### <code>function()</code>
-
-
-- __returns__ <code>{undefined}</code>:
-  
-##### CanElement.view `{Object}`
-
-
-A static getter that returns the renderer function used to render the element's shadow DOM.
-
-
-
-###### <code>Object</code>
-
+See the [latest releases on GitHub](https://github.com/canjs/can-element/releases).
 
 ## Contributing
 
-### Making a Build
+The [contribution guide](https://github.com/canjs/can-element/blob/master/CONTRIBUTING.md) has information on getting help, reporting bugs, developing locally, and more.
 
-To make a build of the distributables into `dist/` in the cloned repository run
+## License
 
-```
-npm install
-node build
-```
+[MIT](https://github.com/canjs/can-element/blob/master/LICENSE.md)
 
-### Running the tests
-
-Tests can run in the browser by opening a webserver and visiting the `test.html` page.
-Automated tests that run the tests from the command line in Firefox can be run with
-
-```
-npm test
-```
