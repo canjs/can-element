@@ -3,6 +3,7 @@
 @group can-element.properties 1 properties
 @group can-element.modules 2 modules
 @group can-element.types 3 types
+@package ../package.json
 
 @description Allows you to create [customelement](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Custom_Elements) classes with CanJS.
 
