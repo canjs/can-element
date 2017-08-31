@@ -47,7 +47,7 @@
     "can-define": "^1.0.0",
     "can-stache": "^3.0.18",
     "can-stache-bindings": "^3.0.6",
-    "cloudydom": "^1.0.1",
+    "cloudydom": "1.0.6",
     "documentjs": "^0.4.4",
     "done-serve": "^1.0.0-alpha.0",
     "donejs-cli": "^1.0.0-alpha.2",
