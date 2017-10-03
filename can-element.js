@@ -42,7 +42,7 @@ function CustomElement(BaseElement) {
 			this._nodeList.expression = "<" + this.localName + ">";
 
 			var Element = this.constructor;
-			var scope = new Scope(this);
+			var scope = Scope.refsScope().add(this);
 			var frag = Element.view(scope, null, this._nodeList);
 
 			// Append the resulting document fragment to the element
