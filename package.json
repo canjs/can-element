@@ -1,6 +1,6 @@
 {
   "name": "can-element",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "main": "can-element.js",
   "description": "Create custom elements with CanJS",
   "homepage": "https://github.com/canjs/can-element",
