@@ -39,7 +39,7 @@
   "dependencies": {
     "can-util": "^3.2.2",
     "can-view-nodelist": "^3.0.4",
-    "can-view-scope": "^3.1.2"
+    "can-view-scope": "^3.3.6"
   },
   "devDependencies": {
     "@webcomponents/custom-elements": "webcomponents/custom-elements#v1.0.0-alpha.4",
