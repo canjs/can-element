@@ -22,13 +22,14 @@
     "version": "git commit -am \"Update dist for release\" && git checkout -b release && git add -f dist/",
     "postversion": "git push --tags && git checkout master && git branch -D release && git push",
     "testee": "testee test/test.html --browsers firefox",
-    "test": "npm run jshint && npm run testee",
+    "test": "npm run detect-cycle && npm run jshint && npm run testee",
     "jshint": "jshint ./*.js ./test/ --config",
     "release:patch": "npm version patch && npm publish",
     "release:minor": "npm version minor && npm publish",
     "release:major": "npm version major && npm publish",
     "build": "node build.js",
-    "develop": "done-serve --static --develop --port 8080"
+    "develop": "done-serve --static --develop --port 8080",
+    "detect-cycle": "detect-cyclic-packages --ignore done-serve"
   },
   "keywords": [
     "web component",
@@ -38,7 +39,7 @@
   "dependencies": {
     "can-util": "^3.2.2",
     "can-view-nodelist": "^3.0.4",
-    "can-view-scope": "^3.1.2"
+    "can-view-scope": "^3.3.6"
   },
   "devDependencies": {
     "@webcomponents/custom-elements": "webcomponents/custom-elements#v1.0.0-alpha.4",
@@ -48,6 +49,7 @@
     "can-stache": "^3.0.18",
     "can-stache-bindings": "^3.0.6",
     "cloudydom": "1.0.6",
+    "detect-cyclic-packages": "^1.1.0",
     "documentjs": "^0.4.4",
     "done-serve": "^1.0.0-alpha.0",
     "donejs-cli": "^1.0.0-alpha.2",
