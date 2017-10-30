@@ -1,5 +1,6 @@
 @module {function} can-element
-@parent can-ecosystem
+@parent can-views
+@collection can-ecosystem
 @group can-element.properties 1 properties
 @group can-element.modules 2 modules
 @group can-element.types 3 types
