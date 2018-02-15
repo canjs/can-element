@@ -14,31 +14,31 @@ To use this [can-define] behavior just import it. For any defined property on th
 Since the [can-define.types.type] can still be specified, you can have properties which are typed even though the attribute will always be a string.
 
 ```js
-var define = require("can-define");
-var Element = require("can-element").Element;
-var view = require("./calc.stache");
-var defineAttr = require("can-element/attributes");
+import define from "can-define";
+import { Element } from "can-element";
+import view from "./calc.stache";
+import defineAttr from "can-element/attributes";
 
-var Calculator = class extends Element {
+const Calculator = class extends Element {
 	static get view() {
 		return view;
 	}
 };
 
-define(Calculator.prototype, {
+define( Calculator.prototype, {
 	num: {
 		type: "number",
 		attribute: true
 	}
-});
+} );
 
-defineAttr(Calculator);
+defineAttr( Calculator );
 
-customElements.define("my-calculator", Calculator);
+customElements.define( "my-calculator", Calculator );
 
-var el = new Calculator();
+const el = new Calculator();
 
-el.setAttribute("num", "34");
+el.setAttribute( "num", "34" );
 
 el.num; // -> 34
 ```
