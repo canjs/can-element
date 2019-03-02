@@ -5,15 +5,13 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/canjs/can-element/blob/master/LICENSE.md)
 [![npm version](https://badge.fury.io/js/can-element.svg)](https://www.npmjs.com/package/can-element)
 [![Travis build status](https://travis-ci.org/canjs/can-element.svg?branch=master)](https://travis-ci.org/canjs/can-element)
-[![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/canjs/can-element?branch=master&svg=true)](https://ci.appveyor.com/project/matthewp/can-element)
-[![Coverage status](https://coveralls.io/repos/github/canjs/can-element/badge.svg?branch=master)](https://coveralls.io/github/canjs/can-element?branch=master)
 [![Greenkeeper badge](https://badges.greenkeeper.io/canjs/can-element.svg)](https://greenkeeper.io/)
 
 Import/require **can-element** and use the Element to derive your own classes. Calling `customElements.define` will register your element with the window's registry of custom elements.
 
 ## Documentation
 
-Read the [can-element API docs on CanJS.com](https://canjs.com/doc/can-element.html).
+Read the [can-element API docs on CanJS.com](https://v3.canjs.com/doc/can-element.html).
 
 ## Changelog
 
