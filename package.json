@@ -38,26 +38,26 @@
   ],
   "dependencies": {
     "can-util": "^3.2.2",
-    "can-view-nodelist": "^3.0.4",
-    "can-view-scope": "^3.3.6"
+    "can-view-nodelist": "^4.3.3",
+    "can-view-scope": "^4.13.0"
   },
   "devDependencies": {
     "@webcomponents/custom-elements": "webcomponents/custom-elements#v1.0.0-alpha.4",
-    "bit-docs": "0.0.7",
-    "can-compute": "^3.0.5",
-    "can-define": "^1.0.0",
-    "can-stache": "^3.0.18",
-    "can-stache-bindings": "^3.0.6",
-    "cloudydom": "1.0.6",
+    "bit-docs": "0.1.0",
+    "can-compute": "^4.1.0",
+    "can-define": "^2.7.12",
+    "can-stache": "^4.17.12",
+    "can-stache-bindings": "^4.10.0",
+    "cloudydom": "1.0.7",
     "detect-cyclic-packages": "^1.1.0",
-    "documentjs": "^0.4.4",
-    "done-serve": "^1.0.0-alpha.0",
-    "donejs-cli": "^1.0.0-alpha.2",
-    "generator-donejs": "^1.0.0-alpha.0",
+    "documentjs": "^0.5.5",
+    "done-serve": "^3.3.1",
+    "donejs-cli": "^3.1.1",
+    "generator-donejs": "^3.3.0",
     "jshint": "^2.9.1",
-    "steal": "^1.0.5",
+    "steal": "^2.2.1",
     "steal-qunit": "^1.0.0",
-    "steal-tools": "^1.0.1",
-    "testee": "^0.3.0"
+    "steal-tools": "^2.2.1",
+    "testee": "^0.9.0"
   }
 }
