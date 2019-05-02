@@ -37,6 +37,7 @@
     "canjs"
   ],
   "dependencies": {
+    "can-define-lazy-value": "^1.1.0",
     "can-observe": "file:../can-observe",
     "can-reflect": "^1.17.9",
     "can-symbol": "^1.6.4",
