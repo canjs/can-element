@@ -37,6 +37,9 @@
     "canjs"
   ],
   "dependencies": {
+    "can-observe": "file:../can-observe",
+    "can-reflect": "^1.17.9",
+    "can-symbol": "^1.6.4",
     "can-util": "^3.2.2",
     "can-view-nodelist": "^3.0.4",
     "can-view-scope": "^3.3.6"
