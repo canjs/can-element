@@ -23,7 +23,7 @@
     "postversion": "git push --tags && git checkout master && git branch -D release && git push",
     "testee": "testee test/test.html --browsers firefox",
     "test": "npm run detect-cycle && npm run jshint && npm run testee",
-    "jshint": "jshint ./*.js ./test/ --config",
+    "jshint": "jshint *.js src/ test/ --config",
     "release:patch": "npm version patch && npm publish",
     "release:minor": "npm version minor && npm publish",
     "release:major": "npm version major && npm publish",
@@ -38,7 +38,7 @@
   ],
   "dependencies": {
     "can-define-lazy-value": "^1.1.0",
-    "can-observe": "file:../can-observe",
+    "can-observe": "^2.3.0",
     "can-reflect": "^1.17.9",
     "can-symbol": "^1.6.4",
     "can-util": "^3.2.2",

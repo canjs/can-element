@@ -1,76 +1,27 @@
-var observe = require("can-observe");
-var canSymbol = require("can-symbol");
-var defineLazyValue = require("can-define-lazy-value");
+var makePrototypeObservable = require("./src/make-prototype-observable");
+var addLifecycleMethods = require("./src/add-lifecycle-methods");
+var useStacheRenderer = require("./src/use-stache-renderer");
+var useDefinedProperties = require("./src/use-defined-properties");
 
-var viewModelSymbol = canSymbol.for("can.viewModel");
-var proxyMetaSymbol = canSymbol.for("can.proxyMeta");
-var lifecycleStatusSymbol = canSymbol.for("can.lifecycleStatus");
-
-function observable(BaseElement = HTMLElement) {
-	var ChildElement = function ChildElement() {
-		var el = Reflect.construct(BaseElement, [], this.constructor);
-		el[lifecycleStatusSymbol].constructed = true;
-		return el;
+var CustomElement = function(BaseElement = HTMLElement) {
+	var CanElement = function CanElement() {
+		return Reflect.construct(BaseElement, arguments, this.constructor);
 	};
 
-	var proto = Object.create(BaseElement.prototype);
+	// define getter/setter pairs for types/async/resolver from the class's static `definitions` property
+	CanElement = useDefinedProperties( CanElement );
 
-	// add lifecycle metadata to each instance
-	defineLazyValue(proto, lifecycleStatusSymbol, function() {
-		return {
-			constructed: false,
-			initialized: false,
-			rendered: false,
-			connected: false
-		};
-	});
+	// create a renderer using stache from the class's static `view` property
+	CanElement = useStacheRenderer( CanElement );
 
-	// can-stache-bindings uses viewModel symbol
-	defineLazyValue(proto, viewModelSymbol, function() {
-		var metadata = this[proxyMetaSymbol];
-		return metadata && metadata.target;
-	});
+	// add lifecycle methods so that prevent events from being dispatched
+	// during initialization and make testing easier
+	CanElement = addLifecycleMethods( CanElement );
 
-	proto.initialize = function() {
-		var status = this[lifecycleStatusSymbol];
+	// trap get/set on the prototype to listen to and dispatch events on instances
+	CanElement = makePrototypeObservable( CanElement );
 
-		if (!status.initialized) {
-			// TODO initialize
-			status.initialized = true;
-		}
-	};
+	return CanElement;
+};
 
-	proto.render = function() {
-		var status = this[lifecycleStatusSymbol];
-
-		if (!status.rendered) {
-			if (typeof this.renderer === "function") {
-				const frag = this.renderer(this);
-				this.appendChild(frag);
-			}
-			status.rendered = true;
-		}
-	};
-
-	proto.connect = function() {
-		var status = this[lifecycleStatusSymbol];
-
-		if (!status.connected) {
-			// TODO connect
-			status.connected = true;
-		}
-	};
-
-	proto.connectedCallback = function() {
-		this.initialize();
-		this.render();
-		this.connect();
-	};
-
-	ChildElement.prototype = observe(proto);
-	return ChildElement;
-}
-
-var CanElement = observable(HTMLElement);
-
-module.exports = CanElement;
+module.exports = CustomElement();

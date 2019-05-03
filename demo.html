@@ -1,0 +1,22 @@
+<!doctype html>
+<my-el></my-el>
+<script src="./node_modules/steal/steal.js">
+	import CanElement from "can-element/can-element";
+
+	const types = {
+		MaybeString: (str) => str
+	};
+
+	class MyEl extends CanElement {
+		static view = `
+		`;
+
+		static definitions = {
+			firstName: { Type: MaybeString },	
+			lastName: { Type: MaybeString },	
+		};
+
+		
+	}
+	customElements.define("my-el", MyEl);
+</script>
