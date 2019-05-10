@@ -56,7 +56,7 @@
     "generator-donejs": "^1.0.0-alpha.0",
     "jshint": "^2.9.1",
     "steal": "^1.0.5",
-    "steal-qunit": "^1.0.0",
+    "steal-qunit": "^2.0.0",
     "steal-tools": "^1.0.1",
     "testee": "^0.3.0"
   }

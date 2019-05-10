@@ -12,12 +12,12 @@ function fixture(){
 }
 
 QUnit.module("can-custom-elements attributes", {
-	teardown: function(){
+	afterEach: function(assert) {
 		fixture().innerHTML = "";
 	}
 });
 
-QUnit.test("can tag a property as an attribute", function(){
+QUnit.test("can tag a property as an attribute", function(assert) {
 	var view = stache("{{foo}}");
 
 	var AttrEl = class extends CanElement {
@@ -40,22 +40,22 @@ QUnit.test("can tag a property as an attribute", function(){
 	var el = new AttrEl();
 	el.foo = "bar";
 
-	QUnit.equal(el.getAttribute("foo"), "bar", "setting the property set the attribute as well");
+	assert.equal(el.getAttribute("foo"), "bar", "setting the property set the attribute as well");
 
-	QUnit.equal(el.foo, "bar", "the property too");
+	assert.equal(el.foo, "bar", "the property too");
 
 	el.setAttribute("foo", "baz");
 
 	helpers.soon(function(){
-		QUnit.equal(el.getAttribute("foo"), "baz", "attr is now baz");
-		QUnit.equal(el.foo, "baz", "prop is now baz");
-		QUnit.start();
+		assert.equal(el.getAttribute("foo"), "baz", "attr is now baz");
+		assert.equal(el.foo, "baz", "prop is now baz");
+		done();
 	});
 
-	QUnit.stop();
+	var done = assert.async();
 });
 
-QUnit.test("Can use 'type' to modify the type on the property", function(){
+QUnit.test("Can use 'type' to modify the type on the property", function(assert) {
 	var view = stache("{{one}}");
 
 	var AttrEl = class extends CanElement {
@@ -78,15 +78,15 @@ QUnit.test("Can use 'type' to modify the type on the property", function(){
 	el.setAttribute("num", "15");
 
 	helpers.soon(function(){
-		QUnit.deepEqual(el.getAttribute("num"), "15");
-		QUnit.deepEqual(el.num, 15, "the property is a number");
-		QUnit.start();
+		assert.deepEqual(el.getAttribute("num"), "15");
+		assert.deepEqual(el.num, 15, "the property is a number");
+		done();
 	});
 
-	QUnit.stop();
+	var done = assert.async();
 });
 
-QUnit.test("Properties are observable", function(){
+QUnit.test("Properties are observable", function(assert) {
 	var view = stache("{{foo}}");
 
 	var AttrEl = class extends CanElement {
@@ -107,17 +107,17 @@ QUnit.test("Properties are observable", function(){
 		return el.foo;
 	});
 
-	QUnit.equal(fooCompute(), el.foo, "same initial value");
+	assert.equal(fooCompute(), el.foo, "same initial value");
 
 	fooCompute.bind("change", function(){
-		QUnit.ok(true, "change event occurred");
-		QUnit.start();
+		assert.ok(true, "change event occurred");
+		done();
 	});
 
-	QUnit.stop();
+	var done = assert.async();
 
 	// Change it
 	el.foo = "bar";
-	QUnit.equal(el.foo, "bar");
-	QUnit.equal(fooCompute(), "bar", "compute updated too");
+	assert.equal(el.foo, "bar");
+	assert.equal(fooCompute(), "bar", "compute updated too");
 });

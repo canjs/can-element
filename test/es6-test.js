@@ -14,12 +14,12 @@ function fixture(){
 }
 
 QUnit.module("can-custom-elements ES6", {
-	teardown: function() {
+	afterEach: function(assert) {
 		fixture().innerHTML = "";
 	}
 });
 
-QUnit.test("Absolute basics", function(){
+QUnit.test("Absolute basics", function(assert) {
 	var view = stache("hello {{name}}");
 
 	class MyApp extends CanElement {
@@ -42,18 +42,18 @@ QUnit.test("Absolute basics", function(){
 	helpers.soon(function(){
 		var myApp = fixture().querySelector("my-app");
 
-		QUnit.equal(myApp.name, "world");
-		QUnit.ok(myApp instanceof HTMLElement);
+		assert.equal(myApp.name, "world");
+		assert.ok(myApp instanceof HTMLElement);
 
-		QUnit.equal(myApp.shadowRoot.textContent, "hello world");
+		assert.equal(myApp.shadowRoot.textContent, "hello world");
 
-		QUnit.start();
+		done();
 	});
 
-	QUnit.stop();
+	var done = assert.async();
 });
 
-QUnit.test("Can pass data to child components", function(){
+QUnit.test("Can pass data to child components", function(assert) {
 	var parentView = stache("<child-one {foo}='bar'/>");
 	var childView = stache("{{foo}}");
 
@@ -88,16 +88,16 @@ QUnit.test("Can pass data to child components", function(){
 
 	helpers.soon(function(){
 		var child = parent.shadowRoot.querySelector("child-one");
-		QUnit.equal(child.foo, "bar", "data was passed from parent to child");
-		QUnit.equal(child.shadowRoot.textContent, "bar",
+		assert.equal(child.foo, "bar", "data was passed from parent to child");
+		assert.equal(child.shadowRoot.textContent, "bar",
 								"content was rendered correctly");
-		QUnit.start();
+		done();
 	});
 
-	QUnit.stop();
+	var done = assert.async();
 });
 
-QUnit.test("Gets data from the passed in scope", function(){
+QUnit.test("Gets data from the passed in scope", function(assert) {
 	var view = stache("{{foo}}");
 
 	var MyComponent = class extends CanElement {
@@ -120,12 +120,12 @@ QUnit.test("Gets data from the passed in scope", function(){
 	helpers.soon(function(){
 		var el = fixture().querySelector("data-from-scope");
 
-		QUnit.equal(el.foo, "bar", "got data from the scope");
-		QUnit.equal(el.shadowRoot.textContent, "bar");
-		QUnit.start();
+		assert.equal(el.foo, "bar", "got data from the scope");
+		assert.equal(el.shadowRoot.textContent, "bar");
+		done();
 	});
 
-	QUnit.stop();
+	var done = assert.async();
 });
 
 QUnit.skip("DOM events work when can-defined", function(){
@@ -149,8 +149,8 @@ QUnit.skip("DOM events work when can-defined", function(){
 	el.addEventListener("some-event", inc);
 
 	el.foo = "bar";
-	QUnit.equal(events, 1, "one event");
+	assert.equal(events, 1, "one event");
 
 	domDispatch.call(el, "some-event");
-	QUnit.equal(events, 2, "two events");
+	assert.equal(events, 2, "two events");
 });
